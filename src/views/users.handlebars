@@ -1,0 +1,13 @@
+<div class='container'>
+  <h1>USERS</h1>
+  {{#each users}}
+      <div class="wrapper">
+        <h2 class='user-first_name'>{{this.first_name}}</h2>
+        <p class='user-last_name'>{{this.last_name}}</p>
+        <p class='user-email'>{{this.email}}</p>
+        <p class='user-role'>{{this.role}}</p>
+
+        <button><a href='/api/users/{{this._id}}' style='color: inherit; text-decoration: none;'>EDIT</a></button>
+        </div>
+  {{/each}}
+</div>

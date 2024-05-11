@@ -1,0 +1,12 @@
+<center>
+  <form action="/api/users/{{userPage._id}}/premium" method="post">
+    <h1>{{userPage.first_name}}</h1>
+    <p>{{userPage.last_name}}</p>
+    <p>{{userPage.email}}</p>
+    <select id="role" name="role">
+      <option value="PREMIUM">Premium</option>
+      <option value="USER">User</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+</center>

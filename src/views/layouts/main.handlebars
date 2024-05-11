@@ -1,0 +1,41 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>ECOMMERCE</title>
+    <link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css' />
+    <link rel="icon" href="data:,">
+  </head>
+
+  <body>
+
+    {{#if user}}
+    <p class="role" data-role-user = '{{user.role}}'></p>
+      <nav class='navbar'>
+        <h1>Bienvenido</h1>
+        <h3>Email: {{user.email}} - Role: {{user.role}}</h3>
+        <form action='/api/sessions/logout' method='post'>
+          <button type='submit'>LOGOUT</button>
+        </form>
+        <button class='nav-btn-go-cart'><a
+            href='/api/carts/{{user.cartId}}'
+            style='color: inherit; text-decoration: none;'
+          >Go to cart</a></button>
+        <button class='nav-btn'><a href='/api/products' style='color: inherit; text-decoration: none;'>Back</a></button>
+        <button class="nav-btn-users"><a href="/api/users" style='color: inherit; text-decoration: none;'>Users List</a></button>
+        <button class='nav-btn-create-product'>
+          <a href='/api/products/create-product' style='color: inherit; text-decoration: none;'>Create product</a>
+        </button>
+        <button class='nav-btn-upload-documents'>
+          <a href='/api/users/upload-documents' style='color: inherit; text-decoration: none;'>Upload documents</a>
+        </button>
+      </nav>
+    {{/if}}
+    {{{body}}}
+  </body>
+  <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel='stylesheet' href='/css/index.css' />
+  <script src='/js/main.js'></script>
+
+</html>

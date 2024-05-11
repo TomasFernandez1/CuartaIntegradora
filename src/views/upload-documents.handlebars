@@ -1,0 +1,26 @@
+<section class="backgroundUpload">
+  <h2 class="text-center p-1">Upload Documents</h2>
+  <form enctype="multipart/form-data" id="uploadForm">
+    <div class="input-box">
+      <label class="form-label" for="identityInput">Identity</label>
+      <input name="identity" type="file" class="form-control" aria-label="Identity document" />
+    </div>
+    <div class="input-box">
+      <label class="form-label" for="myAddressInput">My address</label>
+      <input name="myAddress" type="file" class="form-control" aria-label="My address document" />
+    </div>
+    <div class="input-box">
+      <label class="form-label" for="myAccountInput">Statement of account</label>
+      <input name="myAccount" type="file" class="form-control" aria-label="Statement of account document" />
+    </div>
+    <div class="input-box">
+      <label class="form-label" for="profileInput">Profile picture</label>
+      <input name="profile" type="file" class="form-control" aria-label="Profile picture" />
+    </div>
+    <div class="input-box button">
+      <button type="submit" class="btn btn-success">Upload Documents</button>
+    </div>
+    <input type="hidden" id="userId" value="{{user._id}}">
+  </form>
+    <script src="/js/uploadDocuments.js"></script>
+</section>

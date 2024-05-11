@@ -1,0 +1,26 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Document</title>
+  </head>
+  <body>
+    {{#if products}}
+      {{#each products}}
+        <div class='wrapper'>
+          <strong><h3>{{this.title}}</h3></strong>
+          <h4>${{this.price}}</h4>
+          <h4>{{this.quantity}}</h4>
+          <button class='deleteProductBtn' data-product-id='{{this.id}}'>X</button>
+        </div>
+      {{/each}}
+      <p class='idCart' data-cart-id='{{user.cartId}}'></p>
+      <form action='/api/carts/{{user.cartId}}/purchase' method='post'><button type='submit'>Purchase</button></form>
+    {{else}}
+      <p>Nothing to buy</p>
+    {{/if}}
+
+  </body>
+  <script src='/js/carts.js'></script>
+  <link rel='stylesheet' href='/css/cart.css' />
+</html>

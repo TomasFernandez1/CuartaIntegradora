@@ -1,0 +1,33 @@
+paths:
+  /api/sessions/login:
+    post:
+      summary: Iniciar sesión
+      description: Permite a un usuario iniciar sesión utilizando su correo electrónico y contraseña.
+      tags:
+        - LOGIN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: User's Email.
+                password:
+                  type: string
+                  format: password
+                  description: User's Password.
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: OK
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                description: Auth cookie.

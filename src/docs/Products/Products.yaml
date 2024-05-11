@@ -1,0 +1,158 @@
+paths:
+  /api/products:
+    get:
+      security:
+        - cookieAuth: []
+      summary: Get all products
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Get all products successfully
+        "500":
+          description: Internal Server Error
+    post:
+      security:
+        - cookieAuth: []
+      summary: Crear nuevo producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Products'  # Corrección aquí
+      responses:
+        "200":
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'  # Corrección aquí
+        "500":
+          description: Error interno del servidor
+
+  /api/products/{pid}:
+    get:
+      security:
+        - cookieAuth: []
+      summary: Get product by ID
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+      responses:
+        "200":
+          description: Get product successfully
+    post:
+      security:
+        - cookieAuth: []
+      summary: Create new product
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        "200":
+          description: Producto creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "500":
+          description: Error interno del servidor
+    put:
+      security:
+        - cookieAuth: []
+      summary: Actualizar producto por ID
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: ID del producto a actualizar
+          required: true
+          schema:
+            type: string
+            format: objectId
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateProduct'
+      responses:
+        "200":
+          description: Producto actualizado exitosamente
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+    delete:
+      security:
+        - cookieAuth: []
+      summary: Eliminar producto por ID
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: ID del producto a eliminar
+          required: true
+          schema:
+            type: string
+            format: objectId
+      responses:
+        "200":
+          description: Producto eliminado exitosamente
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: cookieToken
+  schemas:
+    Products:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Product Name
+        description:
+          type: string
+          description: Product Description
+        price:
+          type: number
+          description: Product Price
+        category:
+          type: string
+          description: Product category
+        stock:
+          type: integer
+          description: Product stock
+      example:
+        title: Toy car
+        description: Plastic car for kids
+        price: 9.99
+        category: Toys
+        stock: 100
+
+
+
+  

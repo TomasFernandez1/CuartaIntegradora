@@ -1,0 +1,48 @@
+<div class='container'>
+  <h1>Products</h1>
+  {{#each products}}
+    {{#if this.isActive}}
+      <div class="wrapper">
+        <h2 class='product-title' data-product-title='{{this.title}}'>{{this.title}}</h2>
+        <p class='product-description'>
+          <strong>Description:</strong>
+          {{this.description}}</p>
+        <p class='product-price'><strong>Price:</strong> ${{this.price}}</p>
+        <p class='product-stock'><strong>Stock:</strong> {{this.stock}}</p>
+        <p class='product-category'><strong>Category:</strong>
+          {{this.category}}</p>
+
+        <button><a href='/api/products/{{this._id}}' style='color: inherit; text-decoration: none;'>See this product</a></button>
+        <button class='addToCartBtn' data-product-id='{{this._id}}' data-product-owner='{{this.owner}}'>Add to cart</button>
+        <button class='deleteProductBtn' data-product-id='{{this._id}}' data-product-owner='{{this.owner}}'>Delete product</button>
+        </div>
+      
+    {{/if}}
+  {{/each}}
+  
+
+  <p class='idCart' data-cart-id='{{user.cartId}}'></p>
+  <p class='email' data-email-user='{{user.email}}'></p>
+  <p class='role' data-role-user='{{user.role}}'></p>
+
+  {{#if hasPrevPage}}
+    <button><a
+        href='/api/products?pageQuery={{prevPage}}'
+        style='color: inherit; text-decoration: none;'
+      >Previous</a></button>
+  {{/if}}
+  <strong>{{page}}</strong>
+  {{#if hasNextPage}}
+    <button><a
+        href='/api/products?pageQuery={{nextPage}}'
+        style='color: inherit; text-decoration: none;'
+      >Next</a></button>
+  {{/if}}
+  <button><a href='/api/products?sort=asc' style='color: inherit; text-decoration: none;'>Precio ascendente</a></button>
+  <button><a href='/api/products?sort=desc' style='color: inherit; text-decoration: none;'>Precio descendente</a></button>
+  <button><a href='/api/products' style='color: inherit; text-decoration: none;'>Normal</a></button>
+
+  <script src='/js/products.js'></script>
+  <link rel="stylesheet" href="/css/products.css">
+
+</div>

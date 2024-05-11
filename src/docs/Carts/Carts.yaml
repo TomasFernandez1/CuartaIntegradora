@@ -1,0 +1,159 @@
+paths:
+  /api/carts/:
+    get:
+      security:
+        - cookieAuth: []
+      summary: Get all carts
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Get all carts successfully
+  /api/carts/{cid}:
+    get:
+      security:
+        - cookieAuth: []
+      summary: Get cart by ID
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+      responses:
+        "200":
+          description: Get cart successfully
+    delete:
+      security:
+        - cookieAuth: []
+      summary: Remove all products from a cart
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+      responses:
+        "200":
+          description: All products removed from cart successfully.
+  
+  /api/carts/{cid}/products/{pid}:
+    post:
+      security:
+        - cookieAuth: []
+      summary: Add product to cart
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+      responses:
+        "200":
+          description: The product was added to the cart successfully
+    put:
+      security:
+        - cookieAuth: []
+      summary: Update cart product quantity
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  writeOnly: true
+              required:
+                - quantity
+      responses:
+        "200":
+          description: The quantity of the product in the cart was updated satisfactorily
+    delete:
+      security:
+        - cookieAuth: []
+      summary: Remove a product from a cart
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+      responses:
+        "200":
+          description: Product successfully removed from cart
+
+  /api/carts/{cid}/purchase:
+    post:
+      security:
+        - cookieAuth: []
+      summary: Generate ticket from the purchase
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+            format: objectId
+      responses:
+        "200":
+          description: Ticket generated successfully
+    
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: cookieToken
