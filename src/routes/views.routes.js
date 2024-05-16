@@ -1,20 +1,17 @@
 import RouterClass from "./router.js";
+import viewController from '../controllers/views.controller.js';
+
+const {loginView, recoveryPassView, registerView} = new viewController
 
 export default class viewsRouter extends RouterClass {
   init() {
     // Login view
-    this.get("/login", ["PUBLIC"], async (req, res) => {
-      res.render("login");
-    });
+    this.get("/login", ["PUBLIC"], loginView);
 
     // Register view
-    this.get("/register", ["PUBLIC"], async (req, res) => {
-      res.render("register");
-    });
+    this.get("/register", ["PUBLIC"], registerView);
 
     // Recovery-password view
-    this.get("/recovery-password", ["PUBLIC"], async (req, res) => {
-      res.render("recovery-password");
-    });
+    this.get("/recovery-password", ["PUBLIC"], recoveryPassView);
   }
 }
